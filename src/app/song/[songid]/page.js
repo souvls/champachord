@@ -1,56 +1,102 @@
 "use client";
 import '../song.css'
+import Advertisment from '@/components/Advertisement';
+import TopRating from '@/components/TopRating';
 import { IoIosMusicalNote } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
 import { GiMusicalScore } from "react-icons/gi";
+import { useEffect, useState } from 'react';
 const data = {
     songName: "ຫຼົງຮັກເມຍເຂົາ",
     singer: "ຈິມມີ້ ສິດທິພົນ",
     composer: "ຈິມມີ້ ສິດທິພົນ",
     lyrics: `<div>intro <span>6</span> | <span>6</span> | <span>2</span> <span>6</span>  </div>
             <div><span>6</span> | <span>6</span> | <span>6</span> | <span>6</span>  </div>
-            <div><span>6</span> | <span>5</span><span>1</span> | <span>6</span> <span>1</span> | <span>1</span> </div>            
+            <div><span>6</span> | <span>5</span> | <span>1</span> | <span>6</span> <span>1</span> | <span>1</span> </div>            
             <p class="song show-chords">ຫຼົງຮັກງາມ<span>6</span>ງອນ ເຖິງຮູ້ມາ<span>5</span>ກ່ອນວ່າເຈົ້າມີ<span>1</span>ຜົວ</p>
             <p class="song show-chords">ປັກຈິດປັກ<span>2</span>ໃຈ ຮັກຈົນເມົາ<span>4</span>ມົວ ຄິດຢາກຖອນ<span>5</span>ຕົວຄືຊິບໍ່<span>3</span>ທັນ</p>
             <p class="song show-chords">ຜູ້ສາວມີ<span>6</span>ຜົວ ຫຼຽວເບິ່ງມຸມໃດກໍສວຍລາ<span>2</span>ວັນ</p>
-            <p class="song show-chords">ຫົວໃຈສະ<span>5</span>ເທືອນແຂນຂາຈົນ<span>1</span>ສັ່ນ ເມື່ອ<span>5</span>ແຈ່ມຈັນສົ່ງສາຍຕາ<span>3</span>ມາ</p>`,
+            <p class="song show-chords">ຫົວໃຈສະ<span>5</span>ເທືອນແຂນຂາຈົນ<span>1</span>ສັ່ນ ເມື່ອ<span>5</span>ແຈ່ມຈັນສົ່ງສາຍຕາ<span>3</span>ມາ</p>
+            <p class="song show-chords">ຢາກເຂົ້າໄປ<span>6</span>ຫາ ຢ້ານຄົນເຂົາ<span>5</span>ດ່າວ່າເຮົາມັນ<span>6</span>ຊົ່ວ</p>
+            <p class="song show-chords">ຢ້ານຖືກລູກ<span>5</span>ປຶນຂອງຜູ້ເປັນ<span>4</span>ຜົວ ບໍ່ກ້າເຮັດ<span>5</span>ຊົ່ວຄືເຮັດເອົາ<span>3</span>ໄວ້</p>
+            <p class="song show-chords">ຮັກບໍ່ກ້າ<span>1</span>ບອກ ໄດ້ແຕ່ເກັບ<span>6</span>ຂັງເອົາໄວ້ໃນ<span>2</span>ໃຈ</p>
+            <p class="song show-chords">ກົດໝາຍວາງ<span>5</span>ອອກບໍ່ມີຂໍ້<span>1</span>ໃດ ເປັນຊູ້ທາງ<span>5</span>ໃຈບໍ່ຜິດດອກ1ໜາ</p>
+            <p class="song show-chords">*ຫຼົງຮັກເມຍ<span>4</span>ເຂົາ ຄັນ<span>5</span>ເວົ້າກະຢ້ານຄົນ<span>6</span>ໄດ້ຍິນ</p>
+            <p class="song show-chords">ຈຳຕ້ອງກຶນ<span>4</span>ກິນ ກ້ອນຄວາມ<span>5</span>ເຫງົາບາດຍາມຄິດ<span>3</span>ຮອດ</p>
+            <p class="song show-chords">ຄິດໄວ້ໃນ<span>1</span>ໃຈ ຍາມຜິດກັບ<span>6</span>ຜົວຢາກເຂົ້າໄປ<span>1</span>ປອບ</p>
+            <p class="song show-chords">ໄດ້ແຕ່ຄິດຊື່ໆນັ້ນ<span>6</span>ດອກ ບໍ່ກ້າ<span>6</span>ສ່ຽງຢ້ານປີນຕົ້ນ<span>3</span>ງິ້ວ......<span>6</span></p>
+`,
     categories: "ລູກທົ່ງ",
     style: "",
-    key: "major",
-    tone: 4,
+    tone: "major",
+    key: 4,
     link: `https://www.youtube.com/watch?v=Lr1VEAgcUmM&t=2s`,
     sttaus: true
 }
+//lint youtube to id
+const videoId = data.link.match(/v=([^\&]+)/)[1];
 
 
 
 export default function SongId({ params }) {
-    //lint youtube to id
-    const videoId = data.link.match(/v=([^\&]+)/)[1];
-    var toneNum = data.tone;
-    var toneString = getKeyString(data.key, toneNum);
-    var capo = 0;
-    var lyrics = swapLyrics(data.key, toneNum, data.lyrics)
+    const [keyNum, setKeyNum] = useState();
+    const [keyString, setKeyString] = useState("");
+    const [lyrics, setLyrics] = useState("");
+    const [capo, setCapo] = useState(0);
+
+    useEffect(() => {
+        setKeyNum(data.key);
+        setKeyString(getKeyString(data.key))
+        setLyrics(swapLyrics(data.key, data.tone, data.lyrics));
+    }, [])
 
     const upTone = () => {
-        if(toneNum < 11){
-            toneNum = toneNum+1;
-        }else{
-            toneNum = 0;
+        //change key _______________
+        var x = keyNum;
+        if (x < 11) {
+            x = x + 1;
+        } else {
+            x = 0;
         }
-        toneString = getKeyString(data.key, toneNum);
-        console.log(toneNum)
-        console.log(toneString)
+        setKeyNum(x);
+        setKeyString(getKeyString(x));
+
+        //change capo
+        var y = capo;
+        if (y < -1) {
+            y = 9;
+
+        } else {
+            y = y - 1;
+        }
+        setCapo(y);
+        //change lyrics
+        setLyrics(swapLyrics(x, data.tone, data.lyrics));
     }
     const downTone = () => {
-        if(toneNum > 0){
-            toneNum = toneNum-1;
-        }else{
-            toneNum = 11;
+        //change key _______________
+        var x = keyNum;
+        if (x > 0) {
+            x = x - 1;
+        } else {
+            x = 11;
         }
-        toneString = getKeyString(data.key, toneNum);
-        console.log(toneNum)
-        console.log(toneString)
+
+        setKeyNum(x);
+        setKeyString(getKeyString(x));
+
+        //change capo
+        var y = capo;
+        if (y > 8) {
+            y = -2;
+
+        } else {
+            y = y + 1;
+        }
+        setCapo(y);
+        //change lyrics
+        setLyrics(swapLyrics(x, data.tone, data.lyrics));
+
     }
     return (
 
@@ -74,20 +120,45 @@ export default function SongId({ params }) {
                     <p className='text-center pb-2 font-bold'>ປັບຄີເພງ</p>
                     <div className='w-full lg:w-1/3 m-auto grid grid-cols-3'>
                         <button onClick={downTone} className='bg-sky-500 text-white py-3 px-6 rounded-lg mx-5'>-</button>
-                        <span className='border-2 py-3 px-5 text-center'>{toneString}</span>
+                        <span className='border-2 py-3 px-5 text-center'>{keyString}</span>
                         <button onClick={upTone} className='bg-sky-500 text-white py-3 px-6 rounded-lg mx-5'>+</button>
                     </div>
-                    <p className='text-center pt-2'>{capo == 0 ? 'ຄີຕົ້ນສະບັບ' : "capo: " + capo}</p>
+                    <p className='text-center pt-2'>
+                        {capo > 0 ? "capo ຫ້ອງທີ " + capo :
+                            capo === 0 ? "ຄີີຕົ້ນສະບັບ" :
+                                capo === -1 ? "ຍານສາຍລົງ 1/2 ຫ້ອງສຽງ => Eb" :
+                                    capo === -2 ? "ຍານສາຍລົງ 1 ຫ້ອງສຽງ => D" : ""}
+                    </p>
                 </div>
-                {/* <div>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/Lr1VEAgcUmM?si=RboZHnG2Bn12cDbU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <hr />
+                {/* <div className='hidden md:block lg:block'>
+                    <div class="mt-5 p-5 bg-white shadow-md rounded">
+                        <div className='flex justify-center items-center'>
+                            <div>
+                                <p className='text-center'>ຈຳນວນແຖວ</p>
+                                <button className='p-3 m-3 text-white shadow-md rounded active:bg-green-500'>1ແຖວ</button>
+                                <button className='p-3 m-3 text-white bg-green-500 shadow-md rounded'>4ແຖວ</button>
+                            </div>
+                            <div>
+                                <p className='text-center'>ຂະໜາດໜັງສື</p>
+                            </div>
+                        </div>
+                    </div>
                 </div> */}
-            </div>
-            <div className="container p-4 m-auto">
-                <div className='mt-10'>
+
+                <div class="p-5 bg-white shadow-md rounded text-center">
                     <div dangerouslySetInnerHTML={{ __html: lyrics }}></div>
                 </div>
+                <Advertisment />
+                <div class="p-5 bg-white shadow-md rounded text-center flex justify-center items-center ">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/Lr1VEAgcUmM?si=RboZHnG2Bn12cDbU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="p-5 bg-white shadow-md rounded text-center">
+                    <TopRating />
+                </div>
+
             </div>
+
         </div>
     )
 }
@@ -101,10 +172,10 @@ export default function SongId({ params }) {
 
 const getKeyString = (key, tone) => {
     var chord = [];
-    if (key === "major") {
-        chord = getMajorKey(tone);
+    if (tone === "major") {
+        chord = getMajorKey(key);
     } else {
-        chord = getMajorKey(tone);
+        chord = getMajorKey(key);
     }
     return chord.key;
 }
@@ -113,10 +184,10 @@ function swapLyrics(key, tone, lyrics) {
 
     //get chord group
     var chord = [];
-    if (key === "major") {
-        chord = getMajorKey(tone);
+    if (tone === "major") {
+        chord = getMajorKey(key);
     } else {
-        chord = getMajorKey(tone);
+        chord = getMajorKey(key);
     }
     //replace lyrics
     const x = lyrics.replace(/1/g, chord.I)
