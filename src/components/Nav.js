@@ -5,20 +5,20 @@ import { usePathname } from "next/navigation"
 import champachordLogo from "../assets/logo/champachord.svg"
 
 const navLinks = [
-    { name: "ໜ້າຫຼັກ", href: "/" },
-    { name: "ຂໍເພງ", href: "/reqsong" },
-    { name: "ຂ່າວສານ", href: "/news" },
-    { name: "ກ່ຽວກັບເຮົາ", href: "/contact" },
+    {id:1, name: "ໜ້າຫຼັກ", href: "/" },
+    {id:2, name: "ຂໍເພງ", href: "/reqsong" },
+    {id:3, name: "ຂ່າວສານ", href: "/news" },
+    {id:4, name: "ກ່ຽວກັບເຮົາ", href: "/contact" },
 ]
 const ctaegoryList = [
-    { name: "ຄອດງ່າຍໆ", href: "/category/id" },
-    { name: "ລູກທົ່ງ", href: "/category/id" },
-    { name: "ໝໍລຳ", href: "/category/id" },
-    { name: "ເພງເກົ່າ", href: "/" },
-    { name: "ສະຕຣິງ", href: "/" },
-    { name: "ຣ໋ອກ", href: "/" },
-    { name: "ຣ໋ອກ", href: "/" },
-    { name: "ຣ໋ອກ", href: "/" },
+    {id:1, name: "ຄອດງ່າຍໆ", href: "/category/id" },
+    {id:2, name: "ລູກທົ່ງ", href: "/category/id" },
+    {id:3, name: "ໝໍລຳ", href: "/category/id" },
+    {id:4, name: "ເພງເກົ່າ", href: "/" },
+    {id:5, name: "ສະຕຣິງ", href: "/" },
+    {id:6, name: "ຣ໋ອກ", href: "/" },
+    {id:7, name: "ຣ໋ອກ", href: "/" },
+    {id:8, name: "ຣ໋ອກ", href: "/" },
 
 ]
 export default function Navbar() {
@@ -41,7 +41,7 @@ export default function Navbar() {
                         {navLinks.map((link) => {
                             const isActive = pathname === link.href ? true : false;
                             return (
-                                <Link href={link.href} key={link.name}
+                                <Link key={link.id} href={link.href}
                                     className={"flex items-center hover:opacity-70" + (isActive ? " border-b-2" : "")}>
                                     {link.name}
                                 </Link>
@@ -57,7 +57,7 @@ export default function Navbar() {
                 <div className="py-4 flex justify-center flex-wrap lg:text-lg">
                     {ctaegoryList.map((category) => {
                         return (
-                            <Link href={category.href} className="px-4 hover:opacity-70">
+                            <Link key={category.id} href={category.href} className="px-4 hover:opacity-70">
                                 {category.name}
                             </Link>
                         )

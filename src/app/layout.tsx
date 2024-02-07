@@ -7,21 +7,29 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ຈຳປາຄອດເພງ - Champa Chord",
-  description: "",
+  title: {
+    absolute:"",
+    default:"ຈຳປາຄອດເພງ - Champa Chord",
+    template:"%s | Champa chord"
+  },
+  description: "ເວັບໄຊຣ໌ ລວບລວມເພງລາວ ຈາກທຸກແຫ່ງຫົນ,ທຸກຍຸກສະໄໝ ນຳມາສະແດງຄອດເພງ ພ້ອມສາມາດປັບເພີ່ມລົດຄີໄດ້ຕາມໃຈ.",
+  keywords: "lao song chord, คอร์ดเพลงลาว, ຄອດເພງລາວ",
+  robots: "index,follow",
+  authors: {name:"soulixai, hàn quốc trung, mondev"},
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
+
 }>) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar/>
+        <Navbar />
         {children}
-        <Footer/>
+        <Footer />
       </body>
     </html>
   );

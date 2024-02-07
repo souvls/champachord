@@ -1,12 +1,20 @@
 "use client"
+import {React,useEffect} from 'react';
 import Search from '@/components/Search';
 import TopRating from '@/components/TopRating';
 import NewSong from '@/components/NewSong';
 import ListSongRequest from '@/components/ListSongRequest';
 import Advertisement from '@/components/Advertisement';
 import champachordLogo from "../assets/logo/champachord.svg"
+import Aos from 'aos'
+import 'aos/dist/aos.css'
 import Image from "next/image"
 export default function Home() {
+
+  useEffect(() => {
+    Aos.init();
+  }, [])
+
   return (
     <>
       <div className="flex items-center bg-[url('../assets/bg_img/sm-bg1.jpg')] lg:bg-[url('../assets/bg_img/lg-bg1.jpg')] bg-cover bg-no-repeat min-h-screen">

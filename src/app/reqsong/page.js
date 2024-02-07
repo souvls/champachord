@@ -16,7 +16,6 @@ export default function ReqSong() {
         e.preventDefault();
         const errors = validate();
         setErrors(errors);
-        console.log("sou")
     }
     const validate = () => {
         const error = {};
@@ -40,7 +39,7 @@ export default function ReqSong() {
                     <div className="my-10 p-4 bg-white">
                         <div className="">
                             <h1 className="text-center mb-1">ລາຍລະອຽດເພງທີ່ເຈົ້າຕ້ອງການຂໍ</h1>
-                            <from onSubmit={handleSubmit}>
+                            <form onSubmit={handleSubmit}>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div>
                                         <input type="text" onChange={(e) => setTitle(e.target.value)} className="w-full my-2 text-black outline-none p-2 border-b-2" placeholder="ຊື່ເພງ" />
@@ -48,21 +47,23 @@ export default function ReqSong() {
                                     </div>
                                     <div>
                                         <input type="text" onChange={(e) => setSinger(e.target.value)} className="w-full my-2 text-black outline-none p-2 border-b-2" placeholder="ຊື່ນັກຮ້ອງ" />
+                                        {errors.singer && <span className='pt-1 text-red-500'>{errors.singer}</span>}
                                     </div>
                                 </div>
                                 <div>
                                     <input type="text" onChange={(e) => setLinkYT(e.target.value)} className="w-full my-2 text-black outline-none p-2 border-b-2" placeholder="Link youtube" />
+                                    {errors.linkYT && <span className='pt-1 text-red-500'>{errors.linkYT}</span>}
                                 </div>
                                 <div className="flex justify-center mt-2">
-                                    <input type="button" className="bg-green-500 px-4 py-2 text-white rounded" value="dfd" />
+                                    <button className="bg-green-500 px-4 py-2 text-white rounded">ສົ່ງ</button>
                                 </div>
-                            </from>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
             <div>
-                <br></br>
+                <br/>
                 <hr />
                 <Advertisment />
                 <hr />

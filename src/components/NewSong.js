@@ -6,12 +6,12 @@ export default function NewSong() {
     return (
         <div className='bg-sky-100 pb-20 pt-16'>
             <div className="container p-3 max-w-screen-lg m-auto lg:p-0">
-                <div className="text-center">
+                <div data-aos="fade-up" className="text-center">
                     <p className="p-3">ຈັດໃຫ້ອີກແບບຈຸກໆກັບ</p>
                     <h1 className="text-3xl lg:text-5xl font-bold">ເພງໃໝ່ໃນປີນີ້</h1>
                     <p className="p-6">ເພງໃໝ່ ປີ2024 ພວກເຮົາຍົກມາໃຫ້ເຈົ້າແລ້ວທີ່ນີ້.</p>
                 </div>
-                <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4'>
+                <div data-aos="fade-up" className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4'>
                     <Song id={12345} title={"ໃສວ່າຊັງເຂົາ"} singer={"ຈິມມີ້ ສິດທິພົນ"} imgsong={Imgsong} />
                     <Song id={12345} title={"ໃສວ່າຊັງເຂົາ"} singer={"ຈິມມີ້ ສິດທິພົນ"} imgsong={Imgsong} />
                     <Song id={12345} title={"ໃສວ່າຊັງເຂົາ"} singer={"ຈິມມີ້ ສິດທິພົນ"} imgsong={Imgsong} />
