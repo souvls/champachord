@@ -4,7 +4,8 @@ import { HiOutlineLocationMarker } from "react-icons/hi";
 import { MdOutlineMail } from "react-icons/md";
 import { FaWhatsapp } from "react-icons/fa";
 import Image from 'next/image';
-import Head from "next/head"
+import Advertisement from '@/components/Advertisement';
+
 export default function contact() {
     return (
         <>
@@ -27,6 +28,7 @@ export default function contact() {
                                 </div>
                             </div>
                         </div>
+                        <Advertisement/>
                         <div className="my-10 p-4 bg-white">
                             <p className="text-center text-green-500">ຮັບລົງໂຄສະນາ ຜ່ານເວັບໄຊ ຈຳປາຄອດ, ຮັບສ້າງເວັບໄຊ ແອັບພິເຄຊັ່ນ...</p>
                         </div>

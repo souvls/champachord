@@ -1,8 +1,9 @@
 "use client"
-import Image from "next/image"
+
 import ListSongRequest from "@/components/ListSongRequest";
 import Advertisment from "@/components/Advertisement";
 import { useState } from "react";
+import Search from "@/components/Search";
 
 
 export default function ReqSong() {
@@ -36,7 +37,10 @@ export default function ReqSong() {
         <>
             <div className="flex items-center bg-[url('../assets/bg_img/bg_2.jpg')] bg-cover bg-no-repeat">
                 <div className="container p-4 max-w-screen-lg m-auto lg:p-0">
-                    <div className="my-10 p-4 bg-white">
+                    <div className="pt-4">
+                        <Search />
+                    </div>
+                    <div className="my-10 p-4 bg-white rounded">
                         <div className="">
                             <h1 className="text-center mb-1">ລາຍລະອຽດເພງທີ່ເຈົ້າຕ້ອງການຂໍ</h1>
                             <form onSubmit={handleSubmit}>
@@ -60,10 +64,12 @@ export default function ReqSong() {
                             </form>
                         </div>
                     </div>
+
                 </div>
             </div>
             <div>
-                <br/>
+
+                <br />
                 <hr />
                 <Advertisment />
                 <hr />

@@ -2,6 +2,7 @@
 import '../song.css'
 import Advertisment from '@/components/Advertisement';
 import TopRating from '@/components/TopRating';
+import Search from '@/components/Search';
 import { IoIosMusicalNote } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
 import { GiMusicalScore } from "react-icons/gi";
@@ -101,10 +102,12 @@ export default function SongId({ params }) {
     return (
 
         <div className='bg-gray-200'>
-            <div className="container p-4 max-w-screen-lg m-auto lg:p-0">
+            <div className="container max-w-screen-lg m-auto lg:p-0">
                 <p className='py-4'><a href='/'>ໜ້າຫຼັກ</a> &gt;&gt; ຄອດເພງ {data.songName} </p>
-
-                <div class="p-5 bg-white shadow-md grid grid-cols-1 lg:grid-cols-2 gap-4 rounded">
+                <div className='p-4'>
+                <Search/>
+                </div>
+                <div class="mt-4 p-5 bg-white shadow-md grid grid-cols-1 lg:grid-cols-2 gap-4 rounded">
                     <div className='flex justify-center items-center'>
                         <img alt='coverpage' src={`https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`} width={"100%"} />
                     </div>
@@ -146,19 +149,19 @@ export default function SongId({ params }) {
                     </div>
                 </div> */}
 
-                <div class="p-5 bg-white shadow-md rounded text-center">
+                <div class="lg:p-5 bg-white shadow-md rounded text-center">
                     <div dangerouslySetInnerHTML={{ __html: lyrics }}></div>
                 </div>
                 <Advertisment />
                 <div class="p-5 bg-white shadow-md rounded text-center flex justify-center items-center ">
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/Lr1VEAgcUmM?si=RboZHnG2Bn12cDbU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
+                <hr></hr>
                 <div class="p-5 bg-white shadow-md rounded text-center">
                     <TopRating />
                 </div>
 
             </div>
-
         </div>
     )
 }
