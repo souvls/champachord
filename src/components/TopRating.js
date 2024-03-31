@@ -1,5 +1,6 @@
 "use client";
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Loading from '../components/Loading';
 import { api_url } from '@/api/apiconfig';
@@ -28,7 +29,7 @@ export default function TopRating() {
                     <p className="p-6">ເພງຍອດຮິດ ທີ່ກຳລັງເປັນກະແສຈາກ Youtube, tiktok,... ພວກເຮົາຍົກມາໃຫ້ເຈົ້າແລ້ວທີ່ນີ້.</p>
                 </div>
                 <div data-aos="fade-up" className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4'>
-                    {loading && <Loading/>}
+                    {loading ? <Loading/> : ''}
                     {!loading && songRating.map((song, index) => {
                         return (
                             <Song key={index} id={song.song_id._id} title={song.song_id.song_name} singer={song.song_id.singers} imgsong={song.song_id.youtube_link} />
@@ -47,7 +48,7 @@ const Song = ({ id, title, singer, imgsong }) => {
         <>
             <Link href={"/song/" + id} className='grid grid-rows text-center hover:border-2 rounded'>
                 <div className=''>
-                    <img alt='coverpage' src={`https://i.ytimg.com/vi/${link}/mqdefault.jpg`} width={"100%"}/>
+                    <img alt='coverpage' src={`https://i.ytimg.com/vi/${link}/mqdefault.jpg`}/>
                 </div>
                 <div className='bg-sky-100'>
                     <p className='pt-3 font-bold lg:text-xl'>{title}</p>

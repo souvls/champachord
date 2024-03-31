@@ -5,9 +5,7 @@ import TopRating from '@/components/TopRating';
 import Search from '@/components/Search';
 import { IoIosMusicalNote } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
-import { GiMusicalScore } from "react-icons/gi";
 import { useEffect, useState } from 'react';
-import { getSongByID } from '@/api/api_song';
 import { api_url } from '@/api/apiconfig';
 
 

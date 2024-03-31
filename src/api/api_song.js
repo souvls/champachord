@@ -1,7 +1,7 @@
 import { api_url } from './apiconfig';
 import axios from "axios";
 
-export  async function Allrequest() {
+export default  async function Allrequest() {
     let config = {
         method: 'get',
         url: `${api_url}/api/song-requests`,

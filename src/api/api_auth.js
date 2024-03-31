@@ -1,7 +1,7 @@
 import { api_url } from './apiconfig';
 import axios from "axios";
 import qs from "qs"
-export async function getLogin(email,password) {
+export default async function getLogin(email,password) {
     let data = qs.stringify({
         'email': email,
         'password': password
